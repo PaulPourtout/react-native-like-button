@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Animated, Easing } from 'react-native';
 
-import Styles from './styles/Styles';
-import HeartSide from './HeartSide';
 
 export default class Pulser extends Component {
    constructor(props) {
@@ -56,6 +54,7 @@ export default class Pulser extends Component {
          }
       ).start(() => this.infPulse());
    }
+
 
    render() {
       const {children} = this.props;

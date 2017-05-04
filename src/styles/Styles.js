@@ -6,11 +6,20 @@ const {height, width} = Dimensions.get("window");
 export default Styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#9feea7'
+     },
+     containerCenter: {
+         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
 
     },
+    containerRow: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+   },
     heartContainer: {
         display: 'flex',
         flexDirection: 'row'
@@ -60,6 +69,8 @@ export default Styles = StyleSheet.create({
       alignItems : "center",
       justifyContent : "center"
    },
+
+
 
    textCentered : {
       textAlign: "center"

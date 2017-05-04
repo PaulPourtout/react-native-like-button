@@ -26,22 +26,6 @@ export default class Heart extends Component<HeartProps, HeartState> {
       };
    }
 
-   componentWillMount() {
-      // console.log('will mount');
-   }
-
-   componentDidMount() {
-      // console.log('did mount');
-      // Fetch server
-   }
-   // componentWillReceiveProps(nextProps) {
-   //    this.setState(this.getStateByProps(nextProps));
-   // }
-
-   componentWillUnmount() {
-      // console.log('will unmount');
-   }
-
    toggleLike() {
       const {liked} = this.state;
       const {onLiked, onDisliked, incrementValue} = this.props;
@@ -49,8 +33,6 @@ export default class Heart extends Component<HeartProps, HeartState> {
       liked
          ? this.handleLike(-incrementValue, onDisliked(incrementValue))
          : this.handleLike(incrementValue, onLiked(incrementValue));
-
-      // this.props.handleLikeCount(incrementValue);
    }
 
    handleLike(value : number = 0, onComplete ?: () => {}) {

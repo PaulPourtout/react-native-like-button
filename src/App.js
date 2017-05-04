@@ -5,6 +5,7 @@ import store from 'react-native-simple-store';
 import Styles from './styles/Styles';
 import Heart from './Heart';
 import Pulser from './Pulser';
+import HeartFloat from './HeartFloat';
 
 export default class App extends Component {
    constructor(props) {
@@ -37,11 +38,25 @@ export default class App extends Component {
       store.delete("IS_LIKED");
    }
 
-    render() {
+   render() {
       const {count} = this.state;
 
-        return (
-            <View style={Styles.container}>
+      return (
+         <View style={Styles.container}>
+            <View style={Styles.containerCenter}>
+               <HeartFloat>
+                  <Heart
+                     onLiked={(increment) => this.onLiked(increment)}
+                     onDisliked={(increment) => this.onDisliked(increment)}
+                     incrementValue={10}
+                     nbLikes={100}
+                     likedHeartImg={require('./the_heart.png')}
+                     unlikedHeartImg={require('./empty-heart.svg')}
+                  />
+               </HeartFloat>
+            </View>
+
+            <View style={Styles.containerCenter}>
                <Pulser>
                   <Heart
                      onLiked={(increment) => this.onLiked(increment)}
@@ -52,6 +67,9 @@ export default class App extends Component {
                      unlikedHeartImg={require('./empty-heart.svg')}
                   />
                </Pulser>
+            </View>
+
+            <View style={Styles.containerRow}>
                <Text style={Styles.textCentered}>
                   { this.formatCounter(count) }
                </Text>
@@ -59,19 +77,20 @@ export default class App extends Component {
                   { this.renderCaption() }
                </Text>
             </View>
-        );
-    }
+         </View>
+      );
+   }
 
    formatCounter(count) {
       return `${count} likes`;
    }
 
-    renderCaption() {
+   renderCaption() {
       const {captionShow} = this.state;
 
       const isCaptionShown = (!captionShow)
-         ? 'Button is\nunclicked'
-         : 'Button\nclicked';
+      ? 'Button is\nunclicked'
+      : 'Button\nclicked';
 
       return(
          <Text style={{backgroundColor:"transparent"}}>{isCaptionShown}</Text>
