@@ -61,6 +61,10 @@ export default Styles = StyleSheet.create({
       justifyContent : "center"
    },
 
+   textCentered : {
+      textAlign: "center"
+   },
+
    zoomButtons : {
       borderRadius: 25,
       width: 50,

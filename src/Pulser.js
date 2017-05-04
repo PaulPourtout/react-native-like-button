@@ -13,11 +13,11 @@ export default class Pulser extends Component {
    }
 
    componentDidMount() {
-      // this.fadeIn();
+      this.infPulse();
    }
 
+/*
    zoomIn() {
-      console.log(this.state.zoomAnim);
       Animated.timing(
          this.state.zoomAnim,
          {
@@ -30,7 +30,6 @@ export default class Pulser extends Component {
    }
 
    zoomOut() {
-      console.log(this.state.zoomAnim);
       Animated.timing(
          this.state.zoomAnim,
          {
@@ -41,19 +40,21 @@ export default class Pulser extends Component {
          }
       ).start();
    }
+   */
 
    infPulse() {
-      this.setState({
-         zoomAnim: new Animated.Value(1)
-      });
+      const {zoomAnim} = this.state;
+
+      const nextPulseValue = () => zoomAnim._value === 1 ? 1.1 : 1;
+
       Animated.timing(
          this.state.zoomAnim,
          {
-            toValue: 1 ? 0 : 1,
-            duration: 1000,
-            easing: Easing.elastic(4)
+            toValue: nextPulseValue(),
+            duration: 500,
+            easing: Easing.ease
          }
-      )
+      ).start(() => this.infPulse());
    }
 
    render() {

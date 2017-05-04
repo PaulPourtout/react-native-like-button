@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import {AppRegistry, StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
+import {AppRegistry, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 import Styles from './styles/Styles';
 import HeartSide from './HeartSide';
+import Pulser from './Pulser';
 
 // interface HeartProps {
 //    onLiked : () => {},
@@ -21,8 +22,7 @@ export default class Heart extends Component<HeartProps, HeartState> {
       super(props);
 
       this.state = {
-         liked: props.isLiked || false,
-         count: props.nbLikes || 0
+         liked: this.props.isLiked || false
       };
    }
 
@@ -47,46 +47,38 @@ export default class Heart extends Component<HeartProps, HeartState> {
       const {onLiked, onDisliked, incrementValue} = this.props;
 
       liked
-         ? this.handleLike(-incrementValue, onDisliked)
-         : this.handleLike(incrementValue, onLiked);
+         ? this.handleLike(-incrementValue, onDisliked(incrementValue))
+         : this.handleLike(incrementValue, onLiked(incrementValue));
+
+      // this.props.handleLikeCount(incrementValue);
    }
 
    handleLike(value : number = 0, onComplete ?: () => {}) {
       const {liked, count} = this.state;
 
       this.setState({
-         liked: !liked,
-         count: (count + value)
+         liked: !liked
       });
 
       onComplete && onComplete();
    }
 
-   formatCounter(count : number) {
-      return `${count} likes`;
-   }
-
    isRequiredImgSource(source) {
-      console.log(typeof source);
       return typeof source === 'string' ? {uri: source} : source;
    }
 
 
    render() {
       const {liked, count} = this.state;
-      const {unlikedHeartImg, likedHeartImg, children} = this.props;
+      const {unlikedHeartImg, likedHeartImg} = this.props;
 
       return (
          <View style={ { backgroundColor : "transparent" } }>
-            <TouchableOpacity
-               onPress={() => this.toggleLike()}
-            >
-               { this.heart() }
-            </TouchableOpacity>
-            <Text>{this.formatCounter(count)}</Text>
-
-            {children}
-
+               <TouchableOpacity
+                  onPress={() => this.toggleLike()}
+               >
+                     { this.heart() }
+               </TouchableOpacity>
          </View>
       )
    }

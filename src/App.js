@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
+import {AppRegistry, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import store from 'react-native-simple-store';
 
 import Styles from './styles/Styles';
@@ -10,82 +10,60 @@ export default class App extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         captionShow: false
+         captionShow: false,
+         count: this.props.nbLikes || 0
       }
    }
 
-   onLiked() {
+   handleLikeCount(increment) {
       this.setState({
-         captionShow: !this.state.captionShow
+         count: this.state.count + increment
       });
+   }
 
+   onLiked(increment) {
+      this.setState({
+         captionShow: !this.state.captionShow,
+         count: this.state.count + increment
+      });
       store.save("IS_LIKED", true);
    }
 
-   onDisliked() {
+   onDisliked(increment) {
       this.setState({
-         captionShow: !this.state.captionShow
+         captionShow: !this.state.captionShow,
+         count: this.state.count - increment
       });
-
       store.delete("IS_LIKED");
    }
 
-
     render() {
+      const {count} = this.state;
+
         return (
             <View style={Styles.container}>
-               <Pulser
-                  ref="pulser"
-                  style={{backgroundColor: 'transparent'}}>
+               <Pulser>
                   <Heart
-                     onLiked={() => this.onLiked()}
-                     onDisliked={() => this.onDisliked()}
-                     nbLikes={100}
+                     onLiked={(increment) => this.onLiked(increment)}
+                     onDisliked={(increment) => this.onDisliked(increment)}
                      incrementValue={10}
+                     nbLikes={100}
                      likedHeartImg={require('./the_heart.png')}
                      unlikedHeartImg={require('./empty-heart.svg')}
-                  >
-                     { this.renderCaption() }
-                  </Heart>
+                  />
                </Pulser>
-
-               {
-                  /*
-                  - dezoom    |    + zoom
-                  onPress
-                  this.refs.pulser.pulsePlus()
-                  */
-               }
-               <View style={Styles.heartContainer}>
-                  <TouchableOpacity
-                     style={[Styles.zoomButtons, Styles.centerAbsolute]}
-                     onPress={() => {this.refs.pulser.zoomIn()}}
-                  >
-                     <Text style={Styles.zoomButtonsFont}>+</Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                     style={[Styles.zoomButtons, Styles.centerAbsolute]}
-                     onPress={() => {this.refs.pulser.zoomIn()}}
-                  >
-                     <Text style={Styles.zoomButtonsFont}>Inf</Text>
-                  </TouchableOpacity>
-
-
-                  <TouchableOpacity
-                     style={[Styles.zoomButtons, Styles.centerAbsolute]}
-                     onPress={() => {this.refs.pulser.zoomOut()}}
-                  >
-                     <Text style={Styles.zoomButtonsFont}>-</Text>
-                  </TouchableOpacity>
-               </View>
-
+               <Text style={Styles.textCentered}>
+                  { this.formatCounter(count) }
+               </Text>
+               <Text style={Styles.textCentered}>
+                  { this.renderCaption() }
+               </Text>
             </View>
         );
     }
 
-    zoomIn() {
-
+   formatCounter(count) {
+      return `${count} likes`;
    }
 
     renderCaption() {
