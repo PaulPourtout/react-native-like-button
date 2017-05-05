@@ -33,10 +33,10 @@ export default class HeartFloat extends Component {
             Animated.timing(heartScale, {
                toValue: 1,
                duration: 500,
-               easing: Easing.bounce
+               easing: Easing.easeOut
             }),
             Animated.timing(heartPosition, {
-               toValue: -60,
+               toValue: -50 * Math.random(),
                duration: 500,
                easing: Easing.easeOut
             }),
@@ -56,12 +56,21 @@ export default class HeartFloat extends Component {
       ]).start(() => this.heartFloatFn());
    }
 
+   getRandomValue() {
+      const plusOrMinus = Math.round(Math.random()) * 2 - 1;
+      const randomNumber = Math.floor(Math.random() * 100) * plusOrMinus;
+
+      const newRandom = -50 * Math.random();
+      console.log(newRandom);
+      return randomNumber;
+   }
+
    getHeartAnimationStyle() {
       return {
          transform: [
             {translateY: this.state.heartPosition},
             {scale: this.state.heartScale},
-            {translateX: Math.floor(Math.random() * 100)},
+            {translateX: this.getRandomValue()},
             // {rotate: '90deg'}
          ]
       }
@@ -73,7 +82,7 @@ export default class HeartFloat extends Component {
 
       return (
             <Animated.View
-               style={[{...this.props.style}, this.getHeartAnimationStyle() ]}
+               style={[{...this.props.style, position: 'absolute'}, this.getHeartAnimationStyle() ]}
             >
                   { children }
             </Animated.View>

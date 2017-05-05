@@ -46,6 +46,18 @@ export default class HeartFloat extends Component {
                      source={require('./the_heart.png')}
                   />
                </FloatingElement>
+               <FloatingElement >
+                  <Image
+                     style={Styles.miniHeartFloat}
+                     source={require('./the_heart.png')}
+                  />
+               </FloatingElement>
+               <FloatingElement >
+                  <Image
+                     style={Styles.miniHeartFloat}
+                     source={require('./the_heart.png')}
+                  />
+               </FloatingElement>
             </View>
          )
       }
