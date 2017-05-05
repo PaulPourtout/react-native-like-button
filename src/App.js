@@ -5,7 +5,8 @@ import store from 'react-native-simple-store';
 import Styles from './styles/Styles';
 import Heart from './Heart';
 import Pulser from './Pulser';
-import HeartFloat from './HeartFloat';
+import HeartFloatContainer from './HeartFloatContainer';
+
 
 export default class App extends Component {
    constructor(props) {
@@ -28,6 +29,7 @@ export default class App extends Component {
          count: this.state.count + increment
       });
       store.save("IS_LIKED", true);
+
    }
 
    onDisliked(increment) {
@@ -38,22 +40,15 @@ export default class App extends Component {
       store.delete("IS_LIKED");
    }
 
+
+
    render() {
       const {count} = this.state;
 
       return (
          <View style={Styles.container}>
-            <View style={Styles.containerCenter}>
-               <HeartFloat>
-                  <Heart
-                     onLiked={(increment) => this.onLiked(increment)}
-                     onDisliked={(increment) => this.onDisliked(increment)}
-                     incrementValue={10}
-                     nbLikes={100}
-                     likedHeartImg={require('./the_heart.png')}
-                     unlikedHeartImg={require('./empty-heart.svg')}
-                  />
-               </HeartFloat>
+            <View style={[Styles.containerCenter]}>
+               <HeartFloatContainer></HeartFloatContainer>
             </View>
 
             <View style={Styles.containerCenter}>

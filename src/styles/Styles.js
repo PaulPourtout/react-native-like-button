@@ -56,6 +56,12 @@ export default Styles = StyleSheet.create({
       backgroundColor : 'rgba(0, 255, 0, 0)',
    },
 
+   miniHeartFloat : {
+      width: 20,
+      height: 20,
+
+   },
+
    overlay : {
       backgroundColor : 'rgba(0, 0, 0, 0)',
       position : 'absolute',

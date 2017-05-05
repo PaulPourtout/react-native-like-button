@@ -57,7 +57,7 @@ export default class Heart extends Component<HeartProps, HeartState> {
       return (
          <View style={ { backgroundColor : "transparent" } }>
                <TouchableOpacity
-                  onPress={() => this.toggleLike()}
+                  onPress={(e) => {this.toggleLike();}}
                >
                      { this.heart() }
                </TouchableOpacity>
