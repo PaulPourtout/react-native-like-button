@@ -19,45 +19,47 @@ export default class HeartFloat extends Component {
       };
    }
 
-   componentDidMount() {
-
-   }
+   generateHearts = () => {
+     console.log('coucou');
+   };
 
    render() {
-      const {children} = this.props;
+      const {heartsNumb} = this.props;
 
       return (
             <View>
-               <FloatingElement >
-                  <Image
-                     style={Styles.miniHeartFloat}
-                     source={require('./the_heart.png')}
-                  />
-               </FloatingElement>
-               <FloatingElement >
-                  <Image
-                     style={Styles.miniHeartFloat}
-                     source={require('./the_heart.png')}
-                  />
-               </FloatingElement>
-               <FloatingElement >
-                  <Image
-                     style={Styles.miniHeartFloat}
-                     source={require('./the_heart.png')}
-                  />
-               </FloatingElement>
-               <FloatingElement >
-                  <Image
-                     style={Styles.miniHeartFloat}
-                     source={require('./the_heart.png')}
-                  />
-               </FloatingElement>
-               <FloatingElement >
-                  <Image
-                     style={Styles.miniHeartFloat}
-                     source={require('./the_heart.png')}
-                  />
-               </FloatingElement>
+                <FloatingElement
+                   elementNumb={0}
+                >
+                   <Image
+                      style={Styles.miniHeartFloat}
+                      source={require('./the_heart.png')}
+                   />
+                </FloatingElement>
+                <FloatingElement
+                   elementNumb={90}
+                >
+                   <Image
+                      style={Styles.miniHeartFloat}
+                      source={require('./the_heart.png')}
+                   />
+                </FloatingElement>
+                <FloatingElement
+                   elementNumb={180}
+                >
+                   <Image
+                      style={Styles.miniHeartFloat}
+                      source={require('./the_heart.png')}
+                   />
+                </FloatingElement>
+                <FloatingElement
+                   elementNumb={270}
+                >
+                   <Image
+                      style={Styles.miniHeartFloat}
+                      source={require('./the_heart.png')}
+                   />
+                </FloatingElement>
             </View>
          )
       }

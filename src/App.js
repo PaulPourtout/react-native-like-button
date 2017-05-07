@@ -23,6 +23,7 @@ export default class App extends Component {
       });
    }
 
+
    onLiked(increment) {
       this.setState({
          captionShow: !this.state.captionShow,
@@ -48,7 +49,9 @@ export default class App extends Component {
       return (
          <View style={Styles.container}>
             <View style={[Styles.containerCenter]}>
-               <HeartFloatContainer></HeartFloatContainer>
+               <HeartFloatContainer
+                heartsNumb={5}
+              />
             </View>
 
             <View style={Styles.containerCenter}>

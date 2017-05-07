@@ -27,6 +27,7 @@ export default class HeartFloat extends Component {
 
    heartFloatFn() {
       const {heartPosition, heartScale} = this.state;
+      const {elementNumb} = this.props;
 
       Animated.sequence([
          Animated.parallel([
@@ -36,29 +37,36 @@ export default class HeartFloat extends Component {
                easing: Easing.easeOut
             }),
             Animated.timing(heartPosition, {
-               toValue: -50 * Math.random(),
-               duration: 500,
+               toValue: -20 * elementNumb,
                easing: Easing.easeOut
             }),
          ]),
          Animated.parallel([
             Animated.timing(heartScale, {
                toValue: 0.01,
-               duration: 1000,
+               duration: 1200,
                easing: Easing.easeOut
             }),
             Animated.timing(heartPosition, {
                toValue: 0.01,
-               duration: 1000,
+               duration: 1200,
                easing: Easing.easeOut
             }),
          ]),
       ]).start(() => this.heartFloatFn());
    }
 
+   getCircle() {
+     const {elementNumb} = this.props;
+
+
+   }
+
    getRandomValue() {
+      const {elementNumb} = this.props;
+
       const plusOrMinus = Math.round(Math.random()) * 2 - 1;
-      const randomNumber = Math.floor(Math.random() * 100) * plusOrMinus;
+      const randomNumber = elementNumb * 20 * plusOrMinus;
 
       const newRandom = -50 * Math.random();
       console.log(newRandom);
@@ -66,12 +74,17 @@ export default class HeartFloat extends Component {
    }
 
    getHeartAnimationStyle() {
+      const {elementNumb} = this.props;
+      console.log(20*Math.sin(90));
       return {
          transform: [
-            {translateY: this.state.heartPosition},
-            {scale: this.state.heartScale},
-            {translateX: this.getRandomValue()},
-            // {rotate: '90deg'}
+            // {translateY: this.state.heartPosition},
+            // {scale: this.state.heartScale},
+            // {translateX: this.getRandomValue()},
+            {scale: 1},
+            {translateX: 50 * Math.cos(elementNumb)},
+            {translateY: 50 * Math.sin(elementNumb)},
+
          ]
       }
    }
