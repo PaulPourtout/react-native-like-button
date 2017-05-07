@@ -6,7 +6,7 @@ const {height, width} = Dimensions.get("window");
 export default Styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#9feea7'
+        backgroundColor: '#a7ffeb'
      },
      containerCenter: {
          flex: 1,
@@ -32,11 +32,11 @@ export default Styles = StyleSheet.create({
     },
 
    heartRed:{
-      backgroundColor:'#ff007a'
+      backgroundColor:'#e91e63'
    },
 
    heartGray:{
-      backgroundColor:'#a4a4a4'
+      backgroundColor:'#9e9e9e'
    },
 
    heartLeft: {
